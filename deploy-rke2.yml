@@ -1,0 +1,8 @@
+---
+- name: Deploy RKE2
+  hosts: masters
+  become: yes
+  vars:
+    rke2_download_kubeconf: true
+  roles:
+    - role: lablabs.rke2
