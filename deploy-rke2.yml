@@ -4,5 +4,6 @@
   become: yes
   vars:
     rke2_download_kubeconf: true
+    rke2_version: v1.26.3+rke2r1
   roles:
     - role: lablabs.rke2
