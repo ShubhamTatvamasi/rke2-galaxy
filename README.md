@@ -2,7 +2,7 @@
 
 Install RKE2 with Ansible Library:
 ```bash
-ansible-galaxy install lablabs.rke2
+ansible-galaxy install -f lablabs.rke2
 ```
 
 Start a VM with Multipass:
