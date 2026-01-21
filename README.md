@@ -1,5 +1,7 @@
 # rke2-galaxy
 
+https://github.com/lablabs/ansible-role-rke2
+
 Install RKE2 with Ansible Library:
 ```bash
 ansible-galaxy install -f lablabs.rke2
@@ -38,6 +40,7 @@ ansible-playbook deploy-rke2.yml
 Test kubeconfig:
 ```bash
 export KUBECONFIG=/tmp/rke2.yaml
+export KUBECONFIG=$HOME/.kube/rke2.yaml
 
 kubectl get nodes
 ```
