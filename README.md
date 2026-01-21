@@ -7,7 +7,7 @@ ansible-galaxy install -f lablabs.rke2
 
 Start a VM with Multipass:
 ```bash
-multipass launch jammy \
+multipass launch noble \
   --name rke2 \
   --disk 100G \
   --memory 4G \
