@@ -17,6 +17,7 @@ Get kubeconfig file from node:
 ```bash
 sudo cat /etc/rancher/rke2/rke2.yaml
 ```
+> Change the IP
 
 ---
 
