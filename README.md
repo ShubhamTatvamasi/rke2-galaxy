@@ -1,6 +1,7 @@
 # rke2-galaxy
 
-https://github.com/lablabs/ansible-role-rke2
+https://github.com/lablabs/ansible-role-rke2 \
+https://github.com/rancher/rke2
 
 Install RKE2 with Ansible Library:
 ```bash
