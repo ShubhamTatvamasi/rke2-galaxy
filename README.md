@@ -8,6 +8,18 @@ Install RKE2 with Ansible Library:
 ansible-galaxy install -f lablabs.rke2
 ```
 
+Install RKE2:
+```bash
+ansible-playbook deploy-rke2.yml
+```
+
+Get kubeconfig file from node:
+```bash
+sudo cat /etc/rancher/rke2/rke2.yaml
+```
+
+---
+
 Start a VM with Multipass:
 ```bash
 multipass launch noble \
@@ -31,11 +43,6 @@ Update the IP address in `hosts.yml`:
 ```bash
 export RKE2_IP=$(multipass info rke2 --format=json | jq -r '.info.rke2.ipv4[]')
 yq e '.masters.hosts = env(RKE2_IP)' -i hosts.yml
-```
-
-Install RKE2:
-```bash
-ansible-playbook deploy-rke2.yml
 ```
 
 Test kubeconfig:
