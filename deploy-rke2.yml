@@ -9,3 +9,5 @@
     rke2_download_kubeconf: true
     rke2_download_kubeconf_path: ~/.kube
     rke2_ingress_controller: none
+    rke2_custom_manifests:
+      - manifests/rke2-canal-config.yaml
