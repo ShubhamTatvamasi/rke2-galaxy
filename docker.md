@@ -25,7 +25,7 @@ configs:
       username: YOUR_USERNAME
       password: YOUR_PASSWORD
 ```
-
+> use YOUR_TOKEN 
 
 Restart rke2 server:
 ```bash
