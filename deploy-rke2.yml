@@ -11,3 +11,5 @@
     rke2_ingress_controller: none
     rke2_custom_manifests:
       - manifests/rke2-canal-config.yaml
+    rke2_kubelet_args:
+      - "max-pods=250"
