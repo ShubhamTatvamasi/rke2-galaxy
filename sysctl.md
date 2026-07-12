@@ -4,13 +4,13 @@
 
 Create:
 
-```bash id="1d0k6o"
+```bash
 sudo vim /etc/sysctl.d/90-rke2.conf
 ```
 
 Add:
 
-```conf id="sff8jn"
+```conf
 # Kubernetes networking
 net.bridge.bridge-nf-call-iptables = 1
 net.bridge.bridge-nf-call-ip6tables = 1
@@ -44,7 +44,7 @@ kernel.pid_max = 4194304
 
 Apply:
 
-```bash id="tw4vzm"
+```bash
 sudo sysctl --system
 ```
 
@@ -54,7 +54,7 @@ sudo sysctl --system
 
 Create:
 
-```bash id="d4owjv"
+```bash
 sudo vim /etc/modules-load.d/rke2.conf
 ```
 
@@ -68,7 +68,7 @@ nf_conntrack
 
 Load now:
 
-```bash id="umz5jn"
+```bash
 sudo modprobe overlay
 sudo modprobe br_netfilter
 sudo modprobe nf_conntrack
@@ -80,25 +80,25 @@ sudo modprobe nf_conntrack
 
 Temporary:
 
-```bash id="l4k7yx"
+```bash
 sudo swapoff -a
 ```
 
 Permanent:
 
-```bash id="2l7j14"
+```bash
 sudo vim /etc/fstab
 ```
 
 Comment swap line:
 
-```text id="qoqm3n"
+```text
 #/swap.img none swap sw 0 0
 ```
 
 Verify:
 
-```bash id="79h5zy"
+```bash
 free -h
 ```
 
@@ -108,13 +108,13 @@ free -h
 
 Create:
 
-```bash id="r6dfe3"
+```bash
 sudo vim /etc/security/limits.d/90-rke2.conf
 ```
 
 Add:
 
-```text id="w5nq9t"
+```text
 * soft nofile 1048576
 * hard nofile 1048576
 * soft nproc 1048576
@@ -132,14 +132,14 @@ root hard nproc 1048576
 
 Create:
 
-```bash id="j0vtn9"
+```bash
 sudo mkdir -p /etc/systemd/system.conf.d
 sudo vim /etc/systemd/system.conf.d/limits.conf
 ```
 
 Add:
 
-```ini id="nhb51y"
+```ini
 [Manager]
 DefaultLimitNOFILE=1048576
 DefaultLimitNPROC=1048576
@@ -147,7 +147,7 @@ DefaultLimitNPROC=1048576
 
 Reload:
 
-```bash id="r6l4mc"
+```bash
 sudo systemctl daemon-reexec
 ```
 
@@ -155,20 +155,20 @@ sudo systemctl daemon-reexec
 
 ## 6. Install time sync
 
-```bash id="ql0mri"
+```bash
 sudo apt update
 sudo apt install chrony -y
 ```
 
 Enable:
 
-```bash id="7mnq3q"
+```bash
 sudo systemctl enable --now chrony
 ```
 
 Check:
 
-```bash id="hnm4ms"
+```bash
 chronyc tracking
 ```
 
@@ -178,20 +178,20 @@ chronyc tracking
 
 Create:
 
-```bash id="1fhf8o"
+```bash
 sudo vim /etc/sysctl.d/99-ssd.conf
 ```
 
 Add:
 
-```conf id="dnl3rh"
+```conf
 vm.dirty_ratio = 15
 vm.dirty_background_ratio = 5
 ```
 
 Apply:
 
-```bash id="12ebnd"
+```bash
 sudo sysctl --system
 ```
 
@@ -199,7 +199,7 @@ sudo sysctl --system
 
 ## 8. Reboot
 
-```bash id="ysrjew"
+```bash
 sudo reboot
 ```
 
@@ -207,7 +207,7 @@ sudo reboot
 
 ## 9. Verify
 
-```bash id="m4l0rv"
+```bash
 sysctl fs.inotify.max_user_watches
 sysctl net.ipv4.ip_forward
 sysctl vm.max_map_count
@@ -216,7 +216,7 @@ ulimit -n
 
 Expected:
 
-```text id="z7g8df"
+```text
 1048576
 1
 262144
