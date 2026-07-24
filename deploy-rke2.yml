@@ -10,7 +10,6 @@
           nameserver 8.8.8.8
           nameserver 8.8.4.4
           nameserver 1.1.1.1
-          options ndots:1
         mode: "0644"
   roles:
     - role: lablabs.rke2
@@ -26,4 +25,3 @@
       - "config=/etc/rancher/rke2/kubelet-config.yaml"
     rke2_kubelet_config:
       resolvConf: /etc/rke2-resolv.conf
-      dnsPolicy: ClusterFirst
