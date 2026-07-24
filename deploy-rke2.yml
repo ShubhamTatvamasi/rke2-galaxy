@@ -2,6 +2,15 @@
 - name: Deploy RKE2
   hosts: masters
   become: yes
+  pre_tasks:
+    - name: Write clean resolv.conf for kubelet
+      copy:
+        dest: /etc/rke2-resolv.conf
+        content: |
+          nameserver 8.8.8.8
+          nameserver 8.8.4.4
+          nameserver 1.1.1.1
+        mode: "0644"
   roles:
     - role: lablabs.rke2
   vars:
@@ -13,3 +22,6 @@
       - manifests/rke2-canal-config.yaml
     rke2_kubelet_arg:
       - "max-pods=250"
+      - "config=/etc/rancher/rke2/kubelet-config.yaml"
+    rke2_kubelet_config:
+      resolvConf: /etc/rke2-resolv.conf
