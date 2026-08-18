@@ -5,15 +5,35 @@
   pre_tasks:
     - name: Write clean resolv.conf for kubelet
       copy:
+        src: files/rke2-resolv.conf
         dest: /etc/rke2-resolv.conf
-        content: |
-          nameserver 8.8.8.8
-          nameserver 1.1.1.1
         mode: "0644"
+    - name: Load kernel modules required by sysctl tuning
+      modprobe:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - overlay
+        - br_netfilter
+        - nf_conntrack
+    - name: Write sysctl tuning for RKE2
+      copy:
+        src: files/90-rke2.conf
+        dest: /etc/sysctl.d/90-rke2.conf
+        mode: "0644"
+      notify: Apply sysctl
   roles:
     - role: lablabs.rke2
+  handlers:
+    - name: Apply sysctl
+      command: sysctl --system
   vars:
     rke2_version: v1.36.3+rke2r1
+    rke2_ha_mode: true
+    rke2_ha_mode_keepalived: false
+    rke2_ha_mode_kubevip: false
+    rke2_api_ip: 10.10.153.255
+    rke2_token: "changeme-shared-cluster-token"
     rke2_download_kubeconf: true
     rke2_download_kubeconf_path: ~/.kube
     rke2_ingress_controller: none
