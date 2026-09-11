@@ -37,8 +37,10 @@
     rke2_download_kubeconf: true
     rke2_download_kubeconf_path: ~/.kube
     rke2_ingress_controller: none
+    rke2_cni:
+      - cilium
     rke2_custom_manifests:
-      - manifests/rke2-canal-config.yaml
+      - manifests/rke2-cilium-config.yaml
     rke2_kubelet_arg:
       - "max-pods=250"
       - "config=/etc/rancher/rke2/kubelet-config.yaml"

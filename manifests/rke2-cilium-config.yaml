@@ -2,11 +2,8 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
-  name: rke2-canal
+  name: rke2-cilium
   namespace: kube-system
 spec:
   valuesContent: |-
-    flannel:
-      mtu: 1300
-    calico:
-      vethuMTU: 1300
+    MTU: 1300
