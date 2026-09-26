@@ -28,15 +28,16 @@
     - name: Apply sysctl
       command: sysctl --system
   vars:
-    rke2_version: v1.36.4+rke2r1
-    rke2_ha_mode: true
-    rke2_ha_mode_keepalived: false
-    rke2_ha_mode_kubevip: false
-    rke2_api_ip: 10.10.153.255
-    rke2_token: "changeme-shared-cluster-token"
+    rke2_version: v1.37.0+rke2r1
+    # rke2_ha_mode: true
+    # rke2_ha_mode_keepalived: false
+    # rke2_ha_mode_kubevip: false
+    # rke2_api_ip: 10.10.153.255
+    # rke2_token: "changeme-shared-cluster-token"
     rke2_download_kubeconf: true
     rke2_download_kubeconf_path: ~/.kube
     rke2_ingress_controller: none
+    disable_kube_proxy: true
     rke2_cni:
       - cilium
     rke2_custom_manifests:
